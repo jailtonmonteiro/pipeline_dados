@@ -59,11 +59,11 @@ def prencheNull(listaCombinada):
         dados_combinados_tabela.append(linha)
     return dados_combinados_tabela
 
-def salvaDados(path):
+def salvaDados(path, dadosCombinados):
     import csv
     with open(path_dados_combinados, 'w') as file:
         writer = csv.writer(file)
-        writer.writerows(dados_combinados_tabela)
+        writer.writerows(dadosCombinados)
 
 
 path_json = 'data_raw/dados_empresaA.json'
@@ -97,5 +97,5 @@ dados_combinados_tabela = prencheNull(listaCombinada)
 
 # Salvando de dados -------------------------------------------------------------------------
 
-path_dados_combinados = 'data_processed/dados_combinados_jun.csv'
-salvaDados(path_dados_combinados)
+path_dados_combinados = 'data_processed/dados_combinados_jul.csv'
+salvaDados(path_dados_combinados, dados_combinados_tabela)
