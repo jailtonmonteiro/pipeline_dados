@@ -49,10 +49,10 @@ def combinaInfo(dadoJson, new_dados_csv):
 
 # Preechendo campos indisponiveis ------------------------------------------------------------
 
-def prencheNull(combined_list):
-    nome_colunas = list(combined_list[-1].keys())
+def prencheNull(listaCombinada):
+    nome_colunas = list(listaCombinada[-1].keys())
     dados_combinados_tabela = [nome_colunas]
-    for row in combined_list:
+    for row in listaCombinada:
         linha = []
         for coluna in nome_colunas:
             linha.append(row.get(coluna, 'Indisponivel'))
@@ -97,5 +97,5 @@ dados_combinados_tabela = prencheNull(listaCombinada)
 
 # Salvando de dados -------------------------------------------------------------------------
 
-path_dados_combinados = 'data_processed/dados_combinados_mai.csv'
+path_dados_combinados = 'data_processed/dados_combinados_jun.csv'
 salvaDados(path_dados_combinados)
