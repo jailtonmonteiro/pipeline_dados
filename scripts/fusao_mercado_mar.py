@@ -97,5 +97,5 @@ dados_combinados_tabela = prencheNull(listaCombinada)
 
 # Salvando de dados -------------------------------------------------------------------------
 
-path_dados_combinados = 'data_processed/dados_combinados_jul.csv'
+path_dados_combinados = 'data_processed/dados_combinados.csv'
 salvaDados(path_dados_combinados, dados_combinados_tabela)
