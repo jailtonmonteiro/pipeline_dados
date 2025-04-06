@@ -74,6 +74,6 @@ class Dados:
 
         dadosCombinadosTabela = self.transformaTabela()
 
-        with open(self.path, 'w') as file:
+        with open(path, 'w') as file:
             writer = csv.writer(file)
             writer.writerows(dadosCombinadosTabela)
