@@ -37,7 +37,7 @@ class Dados:
         return dados
     
     def getColumns(self):
-        return list(self.dados[0].keys())
+        return list(self.dados[-1].keys())
     
     def renomeiaColunas(self, key_mapping):
         new_dados = []
