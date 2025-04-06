@@ -3,38 +3,34 @@ import csv
 
 class Dados:
 
-    def __init__(self, path, tipoDados):
-        self.__path = path
-        self.__tipoDados = tipoDados
-        self.dados = self.__leituraDados()
+    def __init__(self, dados):
+        self.dados = dados
         self.nomeColunas = self.__getColumns()
         self.qtdLinhas = self.__sizeData()
 
-    def __leituraJson(self):
+    def __leituraJson(path):
         dados_json = []
-        with open(self.__path, 'r') as file:
+        with open(path, 'r') as file:
             dados_json = json.load(file)
         return dados_json
 
-    def __leituraCsv(self):
+    def __leituraCsv(path):
         dados_csv = []
-        with open(self.__path, 'r') as file:
+        with open(path, 'r') as file:
             spamreader = csv.DictReader(file, delimiter=',')
             for row in spamreader:
                 dados_csv.append(row)
         return dados_csv
 
-    def __leituraDados(self):
+    @classmethod
+    def leituraDados(cls, path, tipoDados):
         dados = []
 
-        if self.__tipoDados == 'json':
-            dados = self.__leituraJson()
-        elif self.__tipoDados == 'csv':
-            dados = self.__leituraCsv()
-        elif self.__tipoDados == 'list':
-            dados = self.__path
-            self.__path = 'Lista em memória'
-        return dados
+        if tipoDados == 'json':
+            dados = cls.__leituraJson(path)
+        elif tipoDados == 'csv':
+            dados = cls.__leituraCsv(path)
+        return cls(dados)
     
     def __getColumns(self):
         return list(self.dados[-1].keys())
@@ -58,7 +54,7 @@ class Dados:
         dadosUnidos.extend(dadosA.dados)
         dadosUnidos.extend(dadosB.dados)
 
-        return Dados(dadosUnidos, 'list')
+        return Dados(dadosUnidos)
     
     def transformaTabela(self):
         dadosCombinadosTabela = [self.nomeColunas]

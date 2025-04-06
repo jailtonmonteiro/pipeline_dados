@@ -4,11 +4,11 @@ from processamento_dados import Dados
 path_json = 'data_raw/dados_empresaA.json'
 path_csv = 'data_raw/dados_empresaB.csv'
 
-dados_empresaA = Dados(path_json, 'json')
+dados_empresaA = Dados.leituraDados(path_json, 'json')
 print(f'Nome colunas empresa A:{dados_empresaA.nomeColunas}')
 print(f'Quantidade de linhas empresa A: {dados_empresaA.qtdLinhas}\n')
 
-dados_empresaB = Dados(path_csv, 'csv')
+dados_empresaB = Dados.leituraDados(path_csv, 'csv')
 print(f'Nome colunas empresa B:{dados_empresaB.nomeColunas}')
 print(f'Quantidade de linhas empresa B: {dados_empresaB.qtdLinhas}\n')
 
