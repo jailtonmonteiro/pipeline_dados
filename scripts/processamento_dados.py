@@ -4,39 +4,39 @@ import csv
 class Dados:
 
     def __init__(self, path, tipoDados):
-        self.path = path
-        self.tipoDados = tipoDados
-        self.dados = self.leituraDados()
-        self.nomeColunas = self.getColumns()
-        self.qtdLinhas = self.sizeData()
+        self.__path = path
+        self.__tipoDados = tipoDados
+        self.dados = self.__leituraDados()
+        self.nomeColunas = self.__getColumns()
+        self.qtdLinhas = self.__sizeData()
 
-    def leituraJson(self):
+    def __leituraJson(self):
         dados_json = []
-        with open(self.path, 'r') as file:
+        with open(self.__path, 'r') as file:
             dados_json = json.load(file)
         return dados_json
 
-    def leituraCsv(self):
+    def __leituraCsv(self):
         dados_csv = []
-        with open(self.path, 'r') as file:
+        with open(self.__path, 'r') as file:
             spamreader = csv.DictReader(file, delimiter=',')
             for row in spamreader:
                 dados_csv.append(row)
         return dados_csv
 
-    def leituraDados(self):
+    def __leituraDados(self):
         dados = []
 
-        if self.tipoDados == 'json':
-            dados = self.leituraJson()
-        elif self.tipoDados == 'csv':
-            dados = self.leituraCsv()
-        elif self.tipoDados == 'list':
-            dados = self.path
-            self.path = 'Lista em memória'
+        if self.__tipoDados == 'json':
+            dados = self.__leituraJson()
+        elif self.__tipoDados == 'csv':
+            dados = self.__leituraCsv()
+        elif self.__tipoDados == 'list':
+            dados = self.__path
+            self.__path = 'Lista em memória'
         return dados
     
-    def getColumns(self):
+    def __getColumns(self):
         return list(self.dados[-1].keys())
     
     def renomeiaColunas(self, key_mapping):
@@ -48,9 +48,9 @@ class Dados:
             new_dados.append(dict_temp)
         
         self.dados = new_dados
-        self.nomeColunas = self.getColumns()
+        self.nomeColunas = self.__getColumns()
 
-    def sizeData(self):
+    def __sizeData(self):
         return len(self.dados)
     
     def combinaInfo(dadosA, dadosB):
